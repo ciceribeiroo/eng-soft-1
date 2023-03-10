@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@NoArgsConstructor
-@AllArgsConstructor
 public class StorageException extends Exception implements Serializable {
+
+    public StorageException(String message) {
+    }
 }

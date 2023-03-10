@@ -1,7 +1,6 @@
 package com.ufla.utils;
 
 import io.minio.MinioClient;
-import org.eclipse.microprofile.config.inject.ConfigProperties;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.inject.Singleton;
