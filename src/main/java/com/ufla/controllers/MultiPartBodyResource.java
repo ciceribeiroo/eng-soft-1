@@ -39,7 +39,7 @@ public class MultiPartBodyResource {
         logger.info("starting converting mp4 para mp3");
         var payloadToPersist = Payload.MuitiPartToPayload(data);
         payloadToPersist.setStatus(Status.converting);
-        //payloadToPersist.persist();
+        payloadToPersist.persist();
         PayloadDTO payloadDTO = payloadService.sendObjectToStorage(payloadToPersist, data.getFile());
         payloadToPersist.setStatus(Status.converted);
         messageService.send(payloadDTO);
