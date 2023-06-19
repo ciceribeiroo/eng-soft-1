@@ -3,24 +3,25 @@ package com.ufla.utils;
 import io.minio.MinioClient;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 
-@Singleton
+@ApplicationScoped
 public class StorageClient {
 
     @ConfigProperty(name="minio.endpoint", defaultValue="http://localhost:9000")
-    public static String endpoint;
+    String endpoint;
 
-    @ConfigProperty(name="minio.secretKey")
-    public static String secretKey;
+    @ConfigProperty(name="minio.secretKey", defaultValue = "ENGSOFTWARE")
+    String secretKey;
 
-    @ConfigProperty(name="minio.accessKey", defaultValue = "ROOTNAME")
-    public static String acessKey;
+    @ConfigProperty(name="minio.accessKey")
+    String accessKey;
 
-    public static MinioClient getMinioClient(){
+    public MinioClient getMinioClient(){
         return MinioClient.builder()
                 .endpoint(endpoint)
-                .credentials(acessKey, secretKey)
+                .credentials(accessKey, secretKey)
                 .build();
     }
 }
