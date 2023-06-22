@@ -14,4 +14,6 @@ import java.util.UUID;
 public class PayloadDTO {
     private String bucketName;
     private String fileName;
+
+    private String idApp;
 }

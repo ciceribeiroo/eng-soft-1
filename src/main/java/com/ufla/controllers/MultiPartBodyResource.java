@@ -36,19 +36,26 @@ public class MultiPartBodyResource {
     @Transactional
     @RolesAllowed({"manager"})
     public void convertMp4ToMp3(@Valid @MultipartForm MultiPartBody data) throws Exception {
-        logger.info("starting converting mp4 para mp3");
-        var payloadToPersist = Payload.MuitiPartToPayload(data);
+        logger.info("Starting converting mp4 to mp3 - " + data);
+        var payloadToPersist = Payload.multiPartToPayload(data);
+
         payloadToPersist.setStatus(Status.converting);
-        payloadToPersist.persist();
         PayloadDTO payloadDTO = payloadService.sendObjectToStorage(payloadToPersist, data.getFile());
-        payloadToPersist.setStatus(Status.converted);
         messageService.send(payloadDTO);
-        logger.info("payload persisted"+payloadToPersist);
+        payloadToPersist.setBucketName(payloadDTO.getBucketName());
+        payloadToPersist.persist();
+        logger.info("Payload created " + payloadToPersist);
     }
 
     @GET
     public Response getAll(){
         logger.info("getting all payload");
         return Response.ok(Payload.listAll()).build();
+    }
+
+    @Path("{id}")
+    @GET
+    public Response get(String id){
+        return Response.ok(Payload.list("idApp", id)).build();
     }
 }

@@ -1,0 +1,1 @@
+alter table Payload add column idApp binary(255)

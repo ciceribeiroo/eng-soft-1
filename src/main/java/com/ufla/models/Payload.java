@@ -6,12 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Entity;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -20,22 +22,23 @@ import java.util.Date;
 @NoArgsConstructor
 public class Payload extends PanacheEntity {
 
-    String username;
-    NotificationType notificationType;
-    public String phone;
-    public String fileName;
-    public String email;
-    public String bucketName;
+    private String idApp;
+    private String username;
+    private NotificationType notificationType;
+    private String phone;
+    private String fileName;
+    private String email;
+    private String bucketName;
     @CreationTimestamp
-    public Date createdAt;
+    private Date createdAt;
     @UpdateTimestamp
-    public Date UpdatedAt;
-    public Status status;
+    private Date UpdatedAt;
+    private Status status;
+    private String contentType;
 
-    public String contentType;
-
-    public  static  Payload MuitiPartToPayload(MultiPartBody multiPartBody){
+    public  static  Payload multiPartToPayload(MultiPartBody multiPartBody){
         return Payload.builder()
+                .idApp(UUID.randomUUID().toString())
                 .username(multiPartBody.getUsername())
                 .notificationType(multiPartBody.getNotificationType())
                 .phone(multiPartBody.getPhone())
@@ -44,4 +47,5 @@ public class Payload extends PanacheEntity {
                 .contentType(multiPartBody.getContentType())
                 .build();
     }
+
 }

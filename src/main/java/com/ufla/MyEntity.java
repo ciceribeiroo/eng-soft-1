@@ -26,4 +26,6 @@ import javax.persistence.Entity;
 @Entity
 public class MyEntity extends PanacheEntity {
     public String field;
+
+    public String Name;
 }

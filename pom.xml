@@ -33,27 +33,6 @@
       <artifactId>quarkus-jdbc-h2</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.10.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <version>3.0.0-M7</version>
-      <type>maven-plugin</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-failsafe-plugin</artifactId>
-      <version>3.0.0-M7</version>
-      <type>maven-plugin</type>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-narayana-jta</artifactId>
-    </dependency>
-    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
@@ -67,40 +46,6 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-flyway</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.flywaydb</groupId>
-      <artifactId>flyway-mysql</artifactId>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/io.quarkiverse.rabbitmqclient/quarkus-rabbitmq-client -->
-    <dependency>
-      <groupId>io.quarkiverse.rabbitmqclient</groupId>
-      <artifactId>quarkus-rabbitmq-client</artifactId>
-      <version>0.5.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api -->
-    <dependency>
-      <groupId>jakarta.inject</groupId>
-      <artifactId>jakarta.inject-api</artifactId>
-      <version>2.0.1</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/jakarta.enterprise/jakarta.enterprise.cdi-api -->
-    <dependency>
-      <groupId>jakarta.enterprise</groupId>
-      <artifactId>jakarta.enterprise.cdi-api</artifactId>
-      <version>4.0.1</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
-    <dependency>
-      <groupId>javax.enterprise</groupId>
-      <artifactId>cdi-api</artifactId>
-      <version>2.0.SP1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
       <artifactId>quarkus-jdbc-mysql</artifactId>
     </dependency>
     <dependency>
@@ -109,7 +54,7 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-oidc</artifactId>
+      <artifactId>quarkus-hibernate-orm</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -152,6 +97,24 @@
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-flyway</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-mysql</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.quarkiverse.rabbitmqclient/quarkus-rabbitmq-client -->
+    <dependency>
+      <groupId>io.quarkiverse.rabbitmqclient</groupId>
+      <artifactId>quarkus-rabbitmq-client</artifactId>
+      <version>0.5.3</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-reactive-messaging-rabbitmq</artifactId>
     </dependency>
   </dependencies>
   <build>
