@@ -12,10 +12,10 @@ public class StorageClient {
     @ConfigProperty(name="minio.endpoint", defaultValue="http://localhost:9000")
     String endpoint;
 
-    @ConfigProperty(name="minio.secretKey", defaultValue = "ENGSOFTWARE")
+    @ConfigProperty(name="minio.secretKey")
     String secretKey;
 
-    @ConfigProperty(name="minio.accessKey")
+    @ConfigProperty(name="minio.accessKey", defaultValue="ROOTUSER")
     String accessKey;
 
     public MinioClient getMinioClient(){

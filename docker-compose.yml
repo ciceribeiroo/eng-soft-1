@@ -7,26 +7,37 @@ volumes:
     driver: local
 
 services:
-  #  quarkus-service:
-  #    build:
-  #      context: .
-  #      dockerfile: src/main/docker/Dockerfile.jvm
-  #    ports:
-  #      - "8081:8081"
-  #    networks:
-  #      - auth-network
-  #    environment:
-  #      QUARKUS_DATASOURCE_JDBC_URL: jdbc:mysql://dbapp:3306/converter
-  #      QUARKUS_DATASOURCE_USERNAME: admin
-  #      QUARKUS_DATASOURCE_PASSWORD: admin
-  #      QUARKUS_DATASOURCE_DB-KIND: mysql
-  #      MINIO_ENDPOINT: http://minio:9000
-  #      MINIO_ACCESSKEY: ROOTNAME
-  #      dev_minio_secretkey: CHANGEME123
-  #    depends_on:
-  #      - dbapp
-  #      - keycloak
-  #      - minio
+  quarkus-service:
+      image: ciceribeiroo/eng-software-trab:v0.3
+      ports:
+        - "8081:8081"
+      networks:
+        - auth-network
+      environment:
+        QUARKUS_DATASOURCE_JDBC_URL: jdbc:mysql://dbapp:3306/converter
+        QUARKUS_DATASOURCE_USERNAME: admin
+        QUARKUS_DATASOURCE_PASSWORD: admin
+        QUARKUS_DATASOURCE_DB-KIND: mysql
+        MINIO_ENDPOINT: http://minio:9002
+        MINIO_ACCESSKEY: ROOTUSER
+        dev_minio_secretkey: ENGSOFTWARE
+        rabbitmq-host: rabbitmq
+        rabbitmq-port: 5672
+        rabbitmq-username: myuser
+        rabbitmq-password: mypassword
+        rabbitmqclient.virtual-host: /
+        rabbitmqclient.username: myuser
+        rabbitmqclient.password: mypassword
+        rabbitmqclient.hostname: rabbitmq
+        rabbitmqclient.port: 5672
+        oidc.auth-server-url: http://keycloak:8080/auth/realms/quarkus
+        oidc.client-id: backend-service
+        oidc.credentials.secret: secret
+      depends_on:
+        - dbapp
+        - keycloak
+        - minio
+        - rabbitmq3
   dbapp:
     image: mysql:8.0
     volumes:
@@ -52,7 +63,7 @@ services:
       - auth-network
   keycloak:
     image: quay.io/keycloak/keycloak:legacy
-    container_name: dbk-keycloak
+    container_name: "dbk-keycloak"
     hostname: keycloak
     environment:
       DB_VENDOR: POSTGRES
