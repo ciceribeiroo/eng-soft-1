@@ -35,16 +35,25 @@ public class MultiPartBodyResource {
     @POST
     @Transactional
     @RolesAllowed({"manager"})
-    public void convertMp4ToMp3(@Valid @MultipartForm MultiPartBody data) throws Exception {
+    public Response convertMp4ToMp3(@Valid @MultipartForm MultiPartBody data) throws Exception {
+
         logger.info("Starting converting mp4 to mp3 - " + data);
+
         var payloadToPersist = Payload.multiPartToPayload(data);
 
         payloadToPersist.setStatus(Status.converting);
+
         PayloadDTO payloadDTO = payloadService.sendObjectToStorage(payloadToPersist, data.getFile());
+
         messageService.send(payloadDTO);
+
         payloadToPersist.setBucketName(payloadDTO.getBucketName());
+
         payloadToPersist.persist();
+
         logger.info("Payload created " + payloadToPersist);
+
+        return Response.ok(payloadToPersist.getIdApp()).build();
     }
 
     @GET

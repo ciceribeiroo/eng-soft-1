@@ -56,8 +56,7 @@ services:
       - auth-network
   keycloak:
     image: quay.io/keycloak/keycloak:legacy
-    container_name: dbk-keycloak
-    hostname: keycloak
+    hostname: "keycloak"
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -70,6 +69,8 @@ services:
     ports:
       - "8180:8080"
     depends_on:
+      - postgres
+    links:
       - postgres
     networks:
       - auth-network
